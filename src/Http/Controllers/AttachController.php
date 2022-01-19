@@ -48,7 +48,9 @@ class AttachController extends Controller
             ->filter(function ($resource) use ($request, $field) {
                 return $request->newResource()->authorizedToAttach($request, $resource->resource);
             })->map(function ($resource) use ($request, $field) {
-                return $field->formatAssociatableResource($request, $resource);
+                // NATE - Edited 01/18/22
+                $name = $resource->resource->tour_route->name . ' - ' . $resource->resource->departure;
+                return $field->formatAssociatableResource($request, $resource, $name);
             })->values();
     }
 
