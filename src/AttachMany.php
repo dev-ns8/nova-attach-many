@@ -128,10 +128,11 @@ class AttachMany extends Field
             && parent::authorize($request);
     }
 
-    public function formatAssociatableResource(NovaRequest $request, $resource)
+    public function formatAssociatableResource(NovaRequest $request, $resource, $name)
     {
         $item = [
-            'display' => $this->formatDisplayValue($resource),
+            'display' => $name,
+            //'display' => $this->formatDisplayValue($resource),
             'value' => $resource->getKey(),
         ];
 
